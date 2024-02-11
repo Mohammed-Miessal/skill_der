@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable , HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -18,6 +20,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'image',
         'name',
         'email',
         'password',
@@ -42,4 +45,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function skills() {
+        return $this->belongsToMany(Skill::class);
+    }
+
+    // public function announcements() : BelongsToMany {
+    //     return $this->belongsToMany(Announcement::class);
+    // }
+
+
+      public function announcements()
+    {
+        return $this->belongsToMany(Announcement::class); // Assurez-vous que cette ligne est correcte
+    }
+
 }
