@@ -26,9 +26,7 @@ class UpdateAnnouncementRequest extends FormRequest
             'title' => 'required|string|max:50',
             'description' => 'required|string|max:100',
             'content' => 'required|string',
-            // 'user_id' => 'required|integer',
             'company_id' => 'required|integer',
-            // 'image' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048', // Validate image file types
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg,webp', // Validate image file types
         ];
     }

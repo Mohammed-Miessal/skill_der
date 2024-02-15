@@ -23,26 +23,28 @@
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8 ">
                                 <form action="{{ route('admin.permissions.store') }}" method="POST">
                                     @csrf
-                                <div class="mt-10">
+                                    <div class="mt-10">
 
-                                    <label for="name" class="block text-xs font-medium text-gray-400"> Permission
-                                        Name
-                                    </label>
+                                        <label for="name" class="block text-xs font-medium text-gray-400">
+                                            Permission
+                                            Name
+                                        </label>
 
-                                    <input type="text" id="name" placeholder="new permission "
-                                        name="name"
-                                        class="mt-1 w-full rounded-md border-gray-200 text-white  shadow-sm sm:text-sm dark:border-gray-700 dark:bg-gray-700" />
+                                        <input type="text" id="name" placeholder="new permission "
+                                            name="name"
+                                            class="mt-1 w-full rounded-md border-gray-200 text-white  shadow-sm sm:text-sm dark:border-gray-700 dark:bg-gray-700" />
 
                                         @error('name')
-                                        <span class="text-red-600"> {{ $message }} </span>
-                                    @enderror
+                                            <span class="text-red-600"> {{ $message }} </span>
+                                        @enderror
 
-                                </div>
+                                    </div>
 
-                                <button type="submit"  class="mt-5 px-4 py-3 font-semibold border rounded dark:border-gray-100 dark:text-gray-100">
-                                    Submit
-                                </button>
-                            </form>
+                                    <button type="submit"
+                                        class="mt-5 px-4 py-3 font-semibold border rounded dark:border-gray-100 dark:text-gray-100">
+                                        Submit
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>

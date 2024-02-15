@@ -7,36 +7,35 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
     //
     public function index()
     {
-        //
         $users = User::all();
-        // dd($users);
         return view('admin.users.index', compact('users'));
     }
 
-    public function show(User $user)
+
+    // ---------------------- Role Management ----------------------------- //
+
+    public function showRole(User $user)
     {
         //
         $roles = Role::all();
-        $permissions = Permission::all();
-
-        return view('admin.users.role', compact('user', 'roles', 'permissions'));
+        return view('admin.users.role', compact('user', 'roles'));
     }
+
 
     public function assignRole(Request $request, User $user)
     {
         if ($user->hasRole($request->role)) {
-            return back()->with('messaage', 'Role exists');
+            return redirect()->route('admin.users.index')->with('message', 'Role exists');
         }
 
         $user->assignRole($request->role);
-        return back()->with('messaage', 'Role assigned ');
+        return redirect()->route('admin.users.index')->with('message', 'Role assigned');
     }
 
 
@@ -45,33 +44,35 @@ class UserController extends Controller
     {
         if ($user->hasRole($role)) {
             $user->removeRole($role);
-            return back()->with('messaage', 'Role removed');
+            return redirect()->route('admin.users.index')->with('message', 'Role removed');
         }
 
-        return back()->with('messaage', 'Role does not exist');
+        return redirect()->route('admin.users.index')->withErrors(['message' => 'Role does not exist']);
     }
 
 
-    public function destroy(User $user)
-    {
-        // Delete the user's image file if it exists
-        if ($user->image) {
-            Storage::disk('public')->delete($user->image);
-        }
 
-        $user->delete();
-        return redirect()->route('admin.users.index')->with('message', 'User deleted successfully');
+    // ---------------------- / Role Management ----------------------------- //
+
+
+
+    // ---------------------- Permission Management ----------------------------- //
+
+    public function showPermission(User $user)
+    {
+        $permissions = Permission::all();
+        return view('admin.users.permission', compact('user',  'permissions'));
     }
 
 
     public function assignPermission(Request $request, User $user)
     {
         if ($user->hasPermissionTo($request->permission)) {
-            return back()->with('messaage', 'Permission exists');
+            return redirect()->route('admin.users.index')->with('messaage', 'Permission exists');
         }
 
         $user->givePermissionTo($request->permission);
-        return back()->with('messaage', 'Role assigned ');
+        return redirect()->route('admin.users.index')->with('messaage', 'Permission assigned ');
     }
 
 
@@ -79,9 +80,12 @@ class UserController extends Controller
     {
         if ($user->hasPermissionTo($permission)) {
             $user->revokePermissionTo($permission);
-            return back()->with('messaage', 'Permission removed');
+            return redirect()->route('admin.users.index')->with('messaage', 'Permission removed');
         }
 
-        return back()->with('messaage', 'Permission does not exist');
+        return redirect()->route('admin.users.index')->with('messaage', 'Permission does not exist');
     }
+
+
+    // ---------------------- / Permission Management ----------------------------- //
 }

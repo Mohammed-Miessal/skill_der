@@ -14,14 +14,6 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
-                lora: ["Lora", "sans-serif"],
-                mulish: ["Mulish", "sans-serif"],
-                nunito: ["Nunito", "sans-serif"],
-                custom: ["Russo One", "sans-serif"],
-            },
-            colors: {
-                // mainColor: '#1feab6',
-                mainColor: "#1cecb7",
             },
         },
     },

@@ -1,11 +1,6 @@
-
 @extends('components.announcements')
 @section('content')
     <!-- Main -->
-
-
-
-
     <div
         class="flex flex-col items-center justify-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
         <div class="mb-10  divide-y">
@@ -42,7 +37,7 @@
                             <div class="pt-8 sm:flex lg:items-end group">
                                 <div class="flex-shrink-0 mb-4 sm:mb-0 sm:mr-4">
                                     <img class="w-full rounded-md h-32 lg:w-32 object-cover"
-                                        src="{{ asset('storage/announcement_images/' . $announcement->image) }}"
+                                        src="{{ asset('storage/announcements_images/' . $announcement->image) }}"
                                         alt="text">
                                 </div>
                                 <div>

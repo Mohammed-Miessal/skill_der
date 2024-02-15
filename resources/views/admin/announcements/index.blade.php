@@ -43,7 +43,7 @@
                                         <thead
                                             class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                             <tr>
-                                                {{-- <th scope="col" class="px-4 py-3 text-center">Id</th> --}}
+
                                                 <th scope="col" class="px-4 py-3 text-center ">Image</th>
                                                 <th scope="col" class="px-4 py-3 text-center">Title</th>
                                                 <th scope="col" class="px-4 py-3 text-center">Description</th>
@@ -59,7 +59,7 @@
                                                     <td class="px-4 py-3 text-center">
                                                         @if ($announcement->image)
                                                             <div class="flex flex-col justify-center items-center">
-                                                                <img src="{{ asset('storage/announcement_images/' . $announcement->image) }}"
+                                                                <img src="{{ asset('storage/announcements_images/' . $announcement->image) }}"
                                                                     alt="Company Image" class="w-auto h-16">
                                                             </div>
                                                         @else
@@ -81,7 +81,7 @@
                                                         <span
                                                             class="inline-flex overflow-hidden rounded-md border bg-white shadow-sm dark:bg-gray-800 dark:border-gray-500 ">
                                                             <a
-                                                                href="{{ route('admin.announcements.edit', $announcement->id) }}">
+                                                                href="{{ route('admin.announcements.edit', $announcement) }}">
                                                                 <button
                                                                     class="inline-block border-e p-3 text-gray-700 hover:bg-gray-50 focus:relative dark:text-white dark:hover:bg-gray-500"
                                                                     title="Edit ">

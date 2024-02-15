@@ -21,14 +21,13 @@ class StoreAnnouncementRequest extends FormRequest
      */
     public function rules(): array
     {
-
         return [
             'title' => 'required|string|max:100',
             'description' => 'required|string|max:255',
             'content' => 'required|string',
             'company_id' => 'required|integer|exists:companies,id',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg,webp',
-            'skills' => 'array', 
+            'skills' => 'array',
         ];
     }
 }

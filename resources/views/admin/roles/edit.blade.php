@@ -44,7 +44,7 @@
                             </div>
 
                             {{-- Permissions to a role --}}
-                            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8 ">
+                            {{-- <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8 ">
 
 
                                 <div class="mt-10">
@@ -78,20 +78,7 @@
                                     <form action="{{ route('admin.roles.permissions', $role) }}" method="POST">
                                         @csrf
 
-                                        {{-- <div class="mt-10">
 
-                                            <label for="name" class="block text-xs font-medium text-gray-400"> Role
-                                                Name
-                                            </label>
-
-                                            <input type="text" id="name" placeholder="new role " name="name"
-                                                value="{{ $role->name }}"
-                                                class="mt-1 w-full rounded-md text-white border-gray-200 shadow-sm sm:text-sm dark:border-gray-700 dark:bg-gray-700" />
-
-                                            @error('name')
-                                                <span class="text-red-600"> {{ $message }} </span>
-                                            @enderror
-                                        </div> --}}
                                         <div>
                                             <label for="permission"
                                                 class="block text-sm font-medium text-gray-900 dark:text-white">
@@ -114,7 +101,7 @@
                                 </div>
 
 
-                            </div>
+                            </div> --}}
 
 
                         </div>

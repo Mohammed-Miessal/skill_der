@@ -33,7 +33,6 @@ class PermissionController extends Controller
 
     public function edit(Permission $permission)
     {
-        // $role = Role::find($id);
         return view('admin.permissions.edit', compact('permission'));
     }
 
@@ -49,9 +48,9 @@ class PermissionController extends Controller
     }
 
 
-    public function destroy(Permission $permission){
+    public function destroy(Permission $permission)
+    {
         $permission->delete();
         return redirect()->route('admin.permissions.index')->with('message', 'Permission deleted successfully');
     }
-
 }

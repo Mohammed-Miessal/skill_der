@@ -87,7 +87,8 @@
                                                                 class="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
                                                                 <form
                                                                     action="{{ route('admin.permissions.destroy', $permission->id) }}"
-                                                                    method="post" onsubmit="return confirm('Are you sure?')">
+                                                                    method="post"
+                                                                    onsubmit="return confirm('Are you sure?')">
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <button type="submit"
@@ -137,6 +138,3 @@
         </div>
     </div>
 </x-admin-layout>
-
-
-

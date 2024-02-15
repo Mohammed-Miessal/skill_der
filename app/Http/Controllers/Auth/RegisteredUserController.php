@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use App\Models\Skill;
+
 class RegisteredUserController extends Controller
 {
     /**
@@ -21,7 +22,7 @@ class RegisteredUserController extends Controller
     public function create(): View
     {
         $skills = Skill::all();
-        return view('auth.register' , compact('skills'));
+        return view('auth.register', compact('skills'));
     }
 
     /**
@@ -30,15 +31,16 @@ class RegisteredUserController extends Controller
      * @throws \Illuminate\Validation\ValidationException
      */
 
-   
+
 
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
+            'image' => ['image', 'mimes:jpeg,png,jpg,gif'], // Adjust mime types and max size as needed
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'image' => ['image', 'mimes:jpeg,png,jpg,gif'], // Adjust mime types and max size as needed
+
             'skills' => ['array', 'nullable'], // Add validation for skills
         ]);
 
@@ -46,7 +48,6 @@ class RegisteredUserController extends Controller
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('profile_images', 'public');
             basename($imagePath);
-
         } else {
             $imagePath = null;
         }
@@ -67,6 +68,4 @@ class RegisteredUserController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
     }
-
-
 }

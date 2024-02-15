@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\Skill;
-use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
@@ -19,8 +18,6 @@ class ProfileController extends Controller
     {
         $user = auth()->user();
         $skills = $user->skills;
-        // dd($skills);
-        // dd($user);
         return view('profile.index', compact('user', 'skills'));
     }
     /**
@@ -61,10 +58,10 @@ class ProfileController extends Controller
 
 
         $user = $request->user();
- // Delete the user's image file if it exists
- if ($user->image) {
-    Storage::disk('public')->delete($user->image);
-}
+        // Delete the user's image file if it exists
+        if ($user->image) {
+            Storage::disk('public')->delete($user->image);
+        }
 
         Auth::logout();
 

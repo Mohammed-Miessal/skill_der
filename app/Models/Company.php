@@ -8,14 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Company extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
+    use HasFactory , SoftDeletes;
 
     protected $fillable = ['name', 'image'];
 
-    // Relationship with the Announcement model
-    public function announcements()
-    {
-        return $this->hasMany(Announcement::class, 'company_id');
-    }
+    
 }

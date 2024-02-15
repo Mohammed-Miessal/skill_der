@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Skill;
 use App\Http\Requests\StoreSkillRequest;
 use App\Http\Requests\UpdateSkillRequest;
-use Illuminate\Http\Request;
 
 class SkillController extends Controller
 {
@@ -59,7 +59,7 @@ class SkillController extends Controller
     {
         //
         $skills = Skill::all();
-        return view('admin.skills.edit', compact('skill','skills'));
+        return view('admin.skills.edit', compact('skill', 'skills'));
     }
 
     /**

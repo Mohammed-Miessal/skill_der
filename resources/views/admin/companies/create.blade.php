@@ -13,7 +13,7 @@
                 <section class="container px-4 mx-auto my-10">
 
                     <div class="flex  gap-x-3 w-full justify-around  ">
-                        <h2 class="text-lg font-medium text-gray-800 dark:text-white flex  items-center justify-center ">
+                        <h2 class="text-xl  mb-5 text-gray-800 dark:text-white flex  items-center justify-center font-semibold ">
                             Add Company </h2>
 
 
@@ -24,7 +24,7 @@
                         <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8 ">
                                 <div class="overflow-hidden  dark:border-gray-700 md:rounded-lg ">
-                                   
+
                                     <div class="xl:w-1/4 lg:w-1/2 md:w-1/2 flex flex-col mb-6">
                                         <label for="LastName"
                                             class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">

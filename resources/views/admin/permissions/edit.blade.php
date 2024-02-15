@@ -20,15 +20,17 @@
                         <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8 ">
 
-                                <form action="{{ route('admin.permissions.update' , $permission) }}" method="POST">
+                                <form action="{{ route('admin.permissions.update', $permission) }}" method="POST">
                                     @csrf
                                     @method('PUT')
                                     <div class="mt-10">
 
-                                        <label for="name" class="block text-xs font-medium text-gray-400"> Permission Name
+                                        <label for="name" class="block text-xs font-medium text-gray-400">
+                                            Permission Name
                                         </label>
 
-                                        <input type="text" id="name" placeholder="new role " name="name" value="{{ $permission->name }}"
+                                        <input type="text" id="name" placeholder="new role " name="name"
+                                            value="{{ $permission->name }}"
                                             class="mt-1 w-full rounded-md text-white border-gray-200 shadow-sm sm:text-sm dark:border-gray-700 dark:bg-gray-700" />
 
                                         @error('name')

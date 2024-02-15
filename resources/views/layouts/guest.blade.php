@@ -15,7 +15,7 @@
         href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css"
         rel="stylesheet"
       />
-      
+
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
@@ -33,12 +33,12 @@
         </div>
 
 
-
         <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
         <script>
           new TomSelect('#select-skill', {
             maxItems: 3,
           });
         </script>
+        
     </body>
 </html>

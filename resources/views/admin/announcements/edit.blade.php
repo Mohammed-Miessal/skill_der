@@ -19,8 +19,8 @@
 
                     </div>
 
-                    <form action="{{ route('admin.announcements.update', $announcement->id) }}" method="post" id="myForm"
-                        enctype="multipart/form-data">
+                    <form action="{{ route('admin.announcements.update', $announcement->id) }}" method="post"
+                        id="myForm" enctype="multipart/form-data">
 
                         @csrf
                         @method('PUT')
@@ -33,7 +33,8 @@
                                             <label for="title"
                                                 class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">
                                                 Title</label>
-                                            <input type="text" name="title" id="title" required  value="{{ $announcement->title }}"
+                                            <input type="text" name="title" id="title" required
+                                                value="{{ $announcement->title }}"
                                                 class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-600 dark:text-gray-400"
                                                 placeholder=" Title " />
                                         </div>
@@ -45,7 +46,8 @@
                                             <label for="description"
                                                 class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">
                                                 Description</label>
-                                            <input type="text" name="description" id="description" required value="{{ $announcement->description }}"
+                                            <input type="text" name="description" id="description" required
+                                                value="{{ $announcement->description }}"
                                                 class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-600 dark:text-gray-400"
                                                 placeholder=" Description" />
                                         </div>
@@ -62,11 +64,11 @@
                                                 <option value="" disabled>Choose a Company</option>
 
                                                 @foreach ($companies as $company)
-                            <option value="{{ $company->id }}"
-                                {{ $announcement->company_id == $company->id ? 'selected' : '' }}>
-                                {{ $company->name }}
-                            </option>
-                        @endforeach
+                                                    <option value="{{ $company->id }}"
+                                                        {{ $announcement->company_id == $company->id ? 'selected' : '' }}>
+                                                        {{ $company->name }}
+                                                    </option>
+                                                @endforeach
 
                                             </select>
                                         </div>
@@ -98,14 +100,17 @@
                         <div class="overflow-hidden  dark:border-gray-700 md:rounded-lg ">
 
                             <div class="xl:w-1/4 lg:w-1/2 md:w-1/2 flex flex-col mb-6 h-fit">
-                                <label for="description" class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">
+                                <label for="description"
+                                    class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">
                                     Skills
                                 </label>
 
-                                <select id="select-skill" name="skills[]" multiple placeholder="Select skills..." autocomplete="off"
-                                    class="block w-full rounded-sm cursor-pointer focus:outline-none" multiple>
+                                <select id="select-skill" name="skills[]" multiple placeholder="Select skills..."
+                                    autocomplete="off" class="block w-full rounded-sm cursor-pointer focus:outline-none"
+                                    multiple>
                                     @foreach ($skills as $skill)
-                                        <option value="{{ $skill->id }}" {{ in_array($skill->id, $announcement->skills->pluck('id')->toArray()) ? 'selected' : '' }}>
+                                        <option value="{{ $skill->id }}"
+                                            {{ in_array($skill->id, $announcement->skills->pluck('id')->toArray()) ? 'selected' : '' }}>
                                             {{ $skill->name }}
                                         </option>
                                     @endforeach

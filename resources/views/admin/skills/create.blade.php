@@ -24,7 +24,8 @@
                                     @csrf
                                     <div class="mt-10">
 
-                                        <label for="name" class="block text-xs font-medium text-gray-400"> Skill Name
+                                        <label for="name" class="block text-xs font-medium text-gray-400"> Skill
+                                            Name
                                         </label>
 
                                         <input type="text" id="name" placeholder="new skill " name="name"

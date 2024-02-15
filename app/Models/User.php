@@ -8,11 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable , HasRoles;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -25,7 +25,6 @@ class User extends Authenticatable
         'email',
         'password',
     ];
-
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -46,18 +45,16 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function skills() {
+
+    public function skills()
+    {
         return $this->belongsToMany(Skill::class);
     }
 
-    // public function announcements() : BelongsToMany {
-    //     return $this->belongsToMany(Announcement::class);
-    // }
 
-
-      public function announcements()
+    public function announcements()
     {
-        return $this->belongsToMany(Announcement::class); // Assurez-vous que cette ligne est correcte
+        return $this->belongsToMany(Announcement::class);
     }
 
 }

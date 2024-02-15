@@ -1,31 +1,30 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use App\Models\Company;
-use App\Models\Skill;
-use App\Models\User;
 use App\Models\Announcement;
 use App\Http\Requests\StoreAnnouncementRequest;
 use App\Http\Requests\UpdateAnnouncementRequest;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Company;
+use App\Models\Skill;
 
 
 class AnnouncementController extends Controller
 {
-    //
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        // dd ( $announcements = Announcement::all());
-        $announcements = Announcement::paginate(10);
-
+        //
+        $announcements = Announcement::all();
         return view('admin.announcements.index', compact('announcements'));
     }
 
-
-
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
         //
@@ -34,7 +33,9 @@ class AnnouncementController extends Controller
         return view('admin.announcements.create', compact('companies', 'skills'));
     }
 
-
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(StoreAnnouncementRequest $request)
     {
         $validatedData = $request->validated();
@@ -47,7 +48,7 @@ class AnnouncementController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('announcement_images', 'public');
+            $imagePath = $request->file('image')->store('announcements_images', 'public');
             $announcement->image = basename($imagePath);
         }
 
@@ -61,69 +62,63 @@ class AnnouncementController extends Controller
         return redirect()->route('admin.announcements.index')->with('message', 'Announcement created successfully.');
     }
 
-
-
+    /**
+     * Display the specified resource.
+     */
     public function show($id)
     {
-
-        // $announcement = Announcement::find($id);
         $announcement = Announcement::with('skills')->find($id);
-        // dd($announcement);
         return view('admin.announcements.show', compact('announcement'));
     }
 
 
+    /**
+     * Show the form for editing the specified resource.
+     */
     public function edit(Announcement $announcement)
     {
+        //
         $skills = Skill::all();
         $companies = Company::all();
         return view('admin.announcements.edit', compact('announcement', 'companies', 'skills'));
     }
 
-
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(UpdateAnnouncementRequest $request, $id)
     {
-        // dd($request);
+
+
         $validatedData = $request->validated();
-
-        // Déboguer pour vérifier la valeur de $announcement
         $announcement = Announcement::findOrFail($id);
-        // dd($announcement);
-
         $announcement->title = $validatedData['title'];
         $announcement->description = $validatedData['description'];
         $announcement->content = $validatedData['content'];
-        // $announcement->user_id = $validatedData['user_id'];
         $announcement->company_id = $validatedData['company_id'];
-
-
 
         if ($request->hasFile('image')) {
             // Delete the old image
-            Storage::disk('public')->delete('announcement_images/' . $announcement->image);
+            Storage::disk('public')->delete('announcements_images/' . $announcement->image);
             // Upload the new image
-            $imagePath = $request->file('image')->store('announcement_images', 'public');
+            $imagePath = $request->file('image')->store('announcements_images', 'public');
             $announcement->image = basename($imagePath);
         }
-
-
 
         $announcement->save();
 
         return redirect()->route('admin.announcements.index')->with('message', 'Announcement updated successfully.');
     }
 
-
-
+    /**
+     * Remove the specified resource from storage.
+     */
     public function destroy(Announcement $announcement)
     {
         //
-        // dd($announcement);
         if ($announcement->image) {
-            Storage::disk('public')->delete('announcement_images/' . $announcement->image);
+            Storage::disk('public')->delete('announcements_images/' . $announcement->image);
         }
-
-
         $announcement->delete();
 
         return redirect()->route('admin.announcements.index')->with('message', 'Announcement deleted successfully.');
@@ -132,46 +127,20 @@ class AnnouncementController extends Controller
 
 
 
-
-
-    // public function apply($announcementId)
-    // {
-    //     // Retrieve the authenticated user
-    //     $user = auth()->user();
-
-    //     // Find the announcement by ID
-    //     $announcement = Announcement::findOrFail($announcementId);
-
-    //     // Attach the user to the announcement
-    //     $user->announcements()->attach($announcement);
-
-    //     // You can also add additional logic here, such as sending notifications, etc.
-
-    //     return redirect()->back()->with('success', 'Application successful!');
-    // }
-
-
-
     public function apply($announcementId)
-{
-    // Retrieve the authenticated user
-    $user = auth()->user();
+    {
 
-    // Find the announcement by ID
-    $announcement = Announcement::findOrFail($announcementId);
+        $user = auth()->user();
+        $announcement = Announcement::findOrFail($announcementId);
 
-    // Check if the user has already applied to this announcement
-    if (!$user->announcements->contains($announcement)) {
-        // Attach the user to the announcement
-        $user->announcements()->attach($announcement);
-
-        // You can also add additional logic here, such as sending notifications, etc.
-
-        return redirect()->back()->with('success', 'Application successful!');
-    } else {
-        // User has already applied
-        return redirect()->back()->with('error', 'You have already applied to this offer.');
+        // Check if the user has already applied to this announcement
+        if (!$user->announcements->contains($announcement)) {
+            // Attach the user to the announcement
+            $user->announcements()->attach($announcement);
+            return redirect()->back()->with('success', 'Application successful!');
+        } else {
+            // User has already applied
+            return redirect()->back()->with('error', 'You have already applied to this offer.');
+        }
     }
-}
-
 }

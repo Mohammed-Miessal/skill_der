@@ -47,7 +47,7 @@
                     class="mt-10 text-xl font-extrabold leading-tight text-blue-600 lg:mb-6 lg:text-xl dark:text-white font-lora flex flex-row gap-4">
                     Partner Company:
                     <div class="flex items-center  ">
-                        <img src="{{ asset('storage/company_images/' . $announcement->company->image) }}"
+                        <img src="{{ asset('storage/companies_images/' . $announcement->company->image) }}"
                             alt="{{ $announcement->name }}'s Profile Image"
                             class="h-1/5 w-1/6 object-cover rounded-full shadow mr-2" />
 
@@ -59,13 +59,13 @@
 
                 @role('Apprenant')
                     @if (session('success'))
-                        <div class="alert alert-success text-green-600">
+                        <div class="alert alert-success text-green-600 font-bold font-mono">
                             {{ session('success') }}
                         </div>
                     @endif
 
                     @if (session('error'))
-                        <div class="alert alert-danger text-red-600">
+                        <div class="alert alert-danger text-red-600 font-bold font-mono">
                             {{ session('error') }}
                         </div>
                     @endif
